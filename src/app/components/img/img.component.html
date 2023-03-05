@@ -1,0 +1,16 @@
+<img
+  class="image"
+  (error)="imageError()"
+  (load)="imageLoaded()"
+  [src]="image"
+  *ngIf="image; else imgElse"
+  alt="image"
+/>
+<ng-template #imgElse>
+  <img
+    class="image"
+    [ngClass]="{ error: imageError() }"
+    [src]="imageDefault"
+    alt="image"
+  />
+</ng-template>
