@@ -1,0 +1,292 @@
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<h1>Form</h1>
+
+<form #myForm="ngForm" class="input-group" (ngSubmit)="onRegister()" action="">
+  <div class="input-group">
+    <label for="name">Nombre</label>
+    <input
+      name="name"
+      required
+      type="text"
+      #nameInputForm
+      id="name"
+      [(ngModel)]="register.name"
+      placeholder="Escriba el nombre"
+    />
+    <span
+      class="message-error"
+      [ngClass]="{ invalid: nameInputForm.value.length === 0 }"
+      >Se debe completar este campo</span
+    >
+  </div>
+  <div class="input-group">
+    <label for="name">Email</label>
+    <input
+      name="email"
+      required
+      #emailInput
+      id="email"
+      type="email"
+      [(ngModel)]="register.email"
+    />
+    <span
+      class="message-error"
+      [ngClass]="{ invalid: emailInput.value.length === 0 }"
+      >Se debe completar este campo</span
+    >
+  </div>
+  <div class="input-group">
+    <label for="name">Contraseña</label>
+    <input
+      name="password"
+      required
+      #passwordInput
+      id="password"
+      type="password"
+      [(ngModel)]="register.password"
+    />
+    <span
+      class="message-error"
+      [ngClass]="{ invalid: passwordInput.value.length === 0 }"
+      >Se debe completar este campo</span
+    >
+  </div>
+  <button [disabled]="!myForm.valid" type="submit">Registrar</button>
+</form>
+
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<h1>NgClass & NgStyle</h1>
+
+<div class="styles">
+  <div>
+    <input type="number" [(ngModel)]="box.width" />
+    <input type="number" [(ngModel)]="box.height" />
+    <input type="color" [(ngModel)]="box.background" />
+  </div>
+  <div
+    [ngStyle]="{
+      'width.px': box.width,
+      'height.px': box.height,
+      backgroundColor: box.background,
+      display: 'block'
+    }"
+  ></div>
+</div>
+
+<input type="text" required #inputName3 [(ngModel)]="person.name" />
+<hr
+  class="line-error"
+  [ngClass]="{
+    valid: inputName3.value.length > 0,
+    invalid: inputName3.value.length === 0
+  }"
+/>
+
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+
+<h1>Classes & Styles</h1>
+<input
+  type="text"
+  required
+  #inputName2
+  [(ngModel)]="person.name"
+  placeholder="Escribe un nombre en este campo"
+/>
+<span class="message-error" [class.invalid]="inputName2.value.length === 0">
+  El campo es requerido
+</span>
+
+<h2>Clases Dinámicas</h2>
+
+<p [style.font-style]="inputName2.value.length === 0 ? 'italic' : 'normal'">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis distinctio
+  quaerat repellendus, magni, nisi porro minima fugiat culpa aut explicabo
+  repudiandae eos, sapiente earum saepe eveniet aliquam! Quae, asperiores est?
+</p>
+<div>
+  <div>
+    <input type="text" [(ngModel)]="widthImg" />
+  </div>
+  <div>
+    <img class="image" [style.width.rem]="widthImg" [src]="person.avatar" />
+  </div>
+</div>
+
+<hr />
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+
+<h1>Estructuras de control</h1>
+
+<h2>*ngSwitch</h2>
+<input type="text" required [(ngModel)]="person.name" />
+
+<div [ngSwitch]="person.name">
+  <p *ngSwitchCase="'Andrés'">Soy Andrés</p>
+  <p *ngSwitchCase="'Ronrona'">Soy Ronrona</p>
+  <p *ngSwitchCase="'Julia'">Soy Julia</p>
+  <p *ngSwitchDefault>I'm default</p>
+</div>
+
+<h2>*ngfor Objects</h2>
+
+<div class="products--grid">
+  <div class="product" *ngFor="let product of products">
+    <img class="image" [src]="product.image" alt="{{ product.name }}" />
+    <span>$ {{ product.price }}</span>
+    <h4>{{ product.name }}</h4>
+  </div>
+</div>
+
+<h2>*ngfor</h2>
+
+<input type="text" required [(ngModel)]="newName" />
+<button (click)="addName()">add name</button>
+
+<ul>
+  <li *ngIf="names.length === 0">No data</li>
+  <li *ngFor="let name of names; index as i">
+    <span>{{ i }} {{ name }} </span>
+    <button (click)="deleteName(i)">Delete</button>
+  </li>
+</ul>
+
+<h2>*ngIf</h2>
+
+<p>Write a name or change age... if it's Andrés or >= 18, a text will appear</p>
+<input type="text" required [(ngModel)]="person.name" />
+<div *ngIf="person.name === 'Andrés' && person.age >= 18; else myBlock">
+  <p>text appearing with a name {{ person.name }}</p>
+</div>
+<ng-template #myBlock> <p>my awesome Block (8)</p> </ng-template>
+
+<hr />
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+
+<h1>Binding con ngModel</h1>
+
+<!-- 
+  Data binding con ngModel }
+  Fusión entre escuchar un evento y setear una propiedad. Un enlace de doble vía
+
+  debemos importar el FormsModule del paquete "@angular/forms"
+  y habilitar el mismo en app.module.ts
+
+  El ngModel sirve mucho para los inputs:
+    Siempre está pendiente del estado del input.
+    Si el estado es válido o no
+    La interacción que el usuario tiene con el input
+    Sincroniza el valor
+
+    [( ngModel )] = "someValue" <--- sinaxis
+
+  Con ngModel se ahorra el evento para realizar modificaciones, pues el
+  ngModel está yendo al value del elemento y cambiando la propiedad
+
+  El ngModel también puede indicar si la propiedad es válida o no
+  Lo realiza por mnedio de darle un nombre a una template variable con #
+  en los atributos del elemento
+
+    <input type="text" #nameInput="ngModel" [(ngModel)]="person.name" />
+
+  Se debe indicar a la template variable que viene de ngModel para poder
+  manejar los inputs de una forma mejor.
+
+-->
+
+<input type="text" required #nameInput="ngModel" [(ngModel)]="person.name" />
+<p>new name: {{ person.name }}</p>
+<p>Valid age? : {{ nameInput.valid }}</p>
+
+<input
+  type="number"
+  max="18"
+  min="10"
+  required
+  #ageInput="ngModel"
+  [(ngModel)]="person.age"
+/>
+<p>person age: {{ person.age }}</p>
+<p>Valid age? : {{ ageInput.valid }}</p>
+
+<hr />
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+
+<h1>Property Binding:</h1>
+
+<!-- 
+  Property Binding:
+  Forma de configurar elementos del html: button, p, input.
+  modificar atributos dede el controlador y enviarle cosas a los atributos html.
+  Debemos vincular los valores del componente a los atributos html,
+  esto lo logramos encerrando el atributo html entre “square brackets: []”.
+
+  Es una forma de controlar dinámicamente algunos atributos html para que estos sean renderizados 
+  a partir de un string, variable o atributo de un objeto de la capa logica.
+
+  Solo funcionan en una direccion desde la capa logica (component.ts) al objeto destino (atributo html),
+  a esto se le conoce como flujo de datos.
+-->
+
+<button [disabled]="!btnDisabled">No enviar</button>
+<button (click)="toggleButton()" [disabled]="btnDisabled">Oprimir</button>
+<button (click)="toggleButton()">Cambiar estado</button>
+
+<input type="text" [value]="person.name" />
+<progress max="100" [value]="person.age"></progress>
+<img class="image" [src]="person.avatar" alt="random image" />
+
+<button (click)="increaseAge()">Incrementar edad</button>
+<p>edad = {{ person.age }}</p>
+
+<!-- 
+  Eventos desde los inputs y otros elementos (div) de Angular
+
+  Siempre se debe colocar () para que angular sepa que se va a ejecutar algo
+  al momento que ocurren
+-->
+
+<div class="box" (scroll)="onScroll($event)">
+  <p>
+    no Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id doloremque
+    atque iure. Perferendis repudiandae ducimus fugiat aut laborum animi quae
+    maxime veniam, sed ut ea, voluptatum ipsa corrupti molestias enim? Lorem
+    ipsum dolor sit amet consectetur adipisicing elit. Sequi illum possimus
+    dolores hic itaque. Cum ipsum eligendi vero accusamus sint sed facilis dicta
+    dolores, corrupti possimus minima tempora iusto architecto.
+  </p>
+</div>
+
+<input type="text" [value]="person.name" (keyup)="changeName($event)" />
+<p>The new name is: {{ person.name }}</p>
+
+<button (onKeyUp)="buttonClick($event)">Hacer click</button>
+<hr />
+
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+
+<h1>String interpolation</h1>
+<!-- 
+  String interpolation 
+
+  Es muy útil para ingresar contenido, párrafo, títulos, dónde se debe renderizar. 
+  Se debe usar en estos casos. Cuando NO son strings lo que se debe renderizar, se utiliza property binding
+-->
+
+<h2>{{ "hola".toLocaleUpperCase() }}</h2>
+<p>Hola me llamo {{ name }}</p>
+<p>Tengo {{ age }} años</p>
+<p>Este es el título {{ title }}</p>
+<p>3 + 3 = {{ 3 + 3 }}</p>
+<img class="image" [src]="imageRandom" alt="random image" />
+
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+
+<app-img img="Este valor viene del app.component"></app-img>
