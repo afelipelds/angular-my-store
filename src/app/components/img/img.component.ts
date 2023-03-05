@@ -1,5 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 @Component({
   selector: 'app-img',
   templateUrl: './img.component.html',
@@ -10,10 +15,11 @@ export class ImgComponent {
   @Output() loaded = new EventEmitter<string>();
   imageDefault = './assets/images/default.png';
 
-  constructor() {}
+  constructor(private cdRef: ChangeDetectorRef) {}
 
   imageError() {
     this.image = this.imageDefault;
+    this.cdRef.detectChanges(); //
     return true;
   }
 
