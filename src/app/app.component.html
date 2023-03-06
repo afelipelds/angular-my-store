@@ -13,6 +13,8 @@
 
 <p><input type="text" [(ngModel)]="imgParent" /></p>
 <app-img (loaded)="onImageLoaded($event)" [image]="imgParent"></app-img>
-
+<hr />
+<hr />
+<app-product [product]="product" *ngFor="let product of products"></app-product>
 <!-- --------------------------------------------------------------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------------------------------------------------------------- -->
