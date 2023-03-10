@@ -16,6 +16,7 @@ export class AppComponent {
   names: string[] = ['Andrés', 'Arturo', 'Rosalba', 'Lua', 'Vainilla'];
   newName = '';
   widthImg = 10;
+  showImage = true;
 
   register = {
     name: '',
@@ -79,6 +80,10 @@ export class AppComponent {
 
   toggleButton() {
     this.btnDisabled = !this.btnDisabled;
+  }
+
+  toggleImage() {
+    this.showImage = !this.showImage;
   }
 
   increaseAge() {

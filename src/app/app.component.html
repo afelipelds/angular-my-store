@@ -12,9 +12,17 @@
 <h1>Uso de @Input</h1>
 
 <p><input type="text" [(ngModel)]="imgParent" /></p>
-<app-img (loaded)="onImageLoaded($event)" [image]="imgParent"></app-img>
+
+<button (click)="toggleImage()" [disabled]="!showImage">Delete image</button>
+<app-img
+  *ngIf="showImage"
+  (loaded)="onImageLoaded($event)"
+  [image]="imgParent"
+></app-img>
+<p>{{ showImage }}</p>
 <hr />
 <hr />
 <app-product [product]="product" *ngFor="let product of products"></app-product>
+
 <!-- --------------------------------------------------------------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------------------------------------------------------------- -->
