@@ -14,11 +14,11 @@
 <p><input type="text" [(ngModel)]="imgParent" /></p>
 
 <button (click)="toggleImage()" [disabled]="!showImage">Delete image</button>
-<app-img
+<app-image
   *ngIf="showImage"
   (loaded)="onImageLoaded($event)"
   [image]="imgParent"
-></app-img>
+></app-image>
 <p>{{ showImage }}</p>
 <hr />
 <hr /> -->

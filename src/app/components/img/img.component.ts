@@ -11,7 +11,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 @Component({
-  selector: 'app-img',
+  selector: 'app-image',
   templateUrl: './img.component.html',
   styleUrls: ['./img.component.scss'],
 })

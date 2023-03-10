@@ -1,6 +1,3 @@
-.image {
-  width: 114px;
-  &.error {
-    width: 114px; //228x221 ... 456x442
-  }
+img {
+  max-width: 100%;
 }
