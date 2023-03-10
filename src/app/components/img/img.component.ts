@@ -29,8 +29,8 @@ export class ImgComponent
   @Input() alt = '';
   @Output() loaded = new EventEmitter<string>();
   imageDefault = './assets/images/default.png';
-  counter = 0;
-  counterFunction: number | undefined;
+  // counter = 0;
+  // counterFunction: number | undefined;
 
   constructor(private cdRef: ChangeDetectorRef) {
     // before render and run once
@@ -48,10 +48,12 @@ export class ImgComponent
   ngOnInit() {
     // before render
     // call api, async, fetch - but run only once
-    this.counterFunction = window.setInterval(() => {
-      this.counter += 1;
-      console.log('ngOnInit ̣--> run setInterval on ´onInit´');
-    }, 1000);
+    //
+    /** How it works with an async function */
+    // this.counterFunction = window.setInterval(() => {
+    //   this.counter += 1;
+    //   console.log('ngOnInit ̣--> run setInterval on ´onInit´');
+    // }, 1000);
   }
 
   ngAfterViewInit() {
@@ -63,8 +65,8 @@ export class ImgComponent
   ngOnDestroy() {
     // delete
     console.log('ngOnDestroy ->> delete component');
-    console.log(this.counterFunction);
-    window.clearInterval(this.counterFunction);
+    // console.log(this.counterFunction);
+    // window.clearInterval(this.counterFunction);
   }
 
   imageError() {
