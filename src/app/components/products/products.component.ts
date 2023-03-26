@@ -7,11 +7,13 @@ import { Product } from 'src/app/models/product.model';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent {
+  myShoppingCart: Product[] = [];
+  totalPrice: number = 0;
   products: Product[] = [
     {
       id: '1',
       name: 'El mejor juguete',
-      price: 565,
+      price: 65,
       image: './assets/images/toy.jpg',
       category: 'all',
     },
@@ -23,7 +25,7 @@ export class ProductsComponent {
     },
     {
       id: '3',
-      name: 'Colleción de albumnes',
+      name: 'Colección de albumes',
       price: 34,
       image: './assets/images/album.jpg',
     },
@@ -42,8 +44,21 @@ export class ProductsComponent {
     {
       id: '6',
       name: 'Gafas',
-      price: 3434,
+      price: 44,
       image: './assets/images/glasses.jpg',
     },
   ];
+
+  constructor() {}
+
+  ngOnInit() {}
+
+  onAddToShoppingCart(product: Product) {
+    this.myShoppingCart.push(product);
+    this.totalPrice = this.myShoppingCart.reduce(
+      (sum, item) => sum + item.price,
+      0
+    );
+    console.log('myShoppingCart--> ', this.myShoppingCart);
+  }
 }
