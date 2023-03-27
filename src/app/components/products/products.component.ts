@@ -12,6 +12,8 @@ export class ProductsComponent {
   totalPrice: number = 0;
   myShoppingCart: Product[] = [];
   products: Product[] = [];
+  date = new Date(2023, 3, 18);
+  today = new Date();
 
   constructor(
     private storeService: StoreService,
