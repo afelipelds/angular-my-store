@@ -7,11 +7,11 @@ import { Product } from '../models/product.model';
   providedIn: 'root',
 })
 export class ProductsService {
-  apiFakeStoreUrl: string = 'https://fakestoreapi.com/products';
+  urlFakeStoreApi: string = 'https://fakestoreapi.com/products';
 
   constructor(private http: HttpClient) {}
 
   getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiFakeStoreUrl);
+    return this.http.get<Product[]>(this.urlFakeStoreApi);
   }
 }

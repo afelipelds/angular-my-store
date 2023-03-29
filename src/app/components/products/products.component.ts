@@ -32,7 +32,7 @@ export class ProductsComponent {
     this.storeService.addProduct(product);
     this.totalPrice = this.storeService.getTotalPrice();
 
-    console.log('myShoppingCart--> ', this.storeService.myShoppingCart);
+    console.log('myShoppingCart--> ', this.storeService.getMyShoppingCart);
     console.log('totalPrice of Cart--> ', this.storeService.getTotalPrice());
   }
 }
