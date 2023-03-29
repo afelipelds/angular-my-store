@@ -41,8 +41,8 @@ export class ImgComponent
     // before & during render and constantly is seeing changes on @Inputs
     // Si es necesario ejecutar acciones por esos cambios en los @Input
     // acá es el sitio
-    console.log('ngOnChanges ->> changes on Input:image', this.image);
-    console.log('ngOnChanges ->> Simplechanges: ', changes);
+    // console.log('ngOnChanges ->> changes on Input:image', this.image);
+    // console.log('ngOnChanges ->> Simplechanges: ', changes);
   }
 
   ngOnInit() {
@@ -59,12 +59,12 @@ export class ImgComponent
   ngAfterViewInit() {
     // After render
     // handle children
-    console.log('ngAfterViewInit ->> ', this.image);
+    // console.log('ngAfterViewInit ->> ', this.image);
   }
 
   ngOnDestroy() {
     // delete
-    console.log('ngOnDestroy ->> delete component');
+    // console.log('ngOnDestroy ->> delete component');
     // console.log(this.counterFunction);
     // window.clearInterval(this.counterFunction);
   }
@@ -76,7 +76,7 @@ export class ImgComponent
   }
 
   imageLoaded() {
-    console.log('The image has loaded inside the son!');
+    // console.log('The image has loaded inside the son!');
     this.loaded.emit(this.image);
   }
 }
