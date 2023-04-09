@@ -31,8 +31,6 @@ export class ProductsComponent {
   onAddToShoppingCart(product: Product) {
     this.storeService.addProduct(product);
     this.totalPrice = this.storeService.getTotalPrice();
-
-    console.log('myShoppingCart--> ', this.storeService.getMyShoppingCart);
     console.log('totalPrice of Cart--> ', this.storeService.getTotalPrice());
   }
 }

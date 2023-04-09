@@ -24,7 +24,7 @@ export class ImgComponent
   set changeImageSetter(newImage: string) {
     this.image = newImage;
     //code
-    console.log('change just the image', newImage);
+    // console.log('change just the image', newImage);
   }
   @Input() alt = '';
   @Output() loaded = new EventEmitter<string>();
@@ -34,7 +34,7 @@ export class ImgComponent
 
   constructor(private cdRef: ChangeDetectorRef) {
     // before render and run once
-    console.log('constructor ->> ', this.image);
+    // console.log('constructor ->> ', this.image);
   }
 
   ngOnChanges(changes: SimpleChanges) {
