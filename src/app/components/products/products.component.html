@@ -7,8 +7,12 @@
 </div>
 
 <div class="product-detail" [class.active]="showProductDetail">
-  <div>
+  <div *ngIf="productChosen">
     <button (click)="toggleProductDetail()">Close</button>
-    <div>Contenido</div>
+    <h2>{{productChosen.title}}</h2>
+    <p>{{productChosen.description}}</p>
+    <h4>{{productChosen.price | currency: 'USD $'}}</h4>
+    <p>{{productChosen.category.name}}</p>
+
   </div>
 </div>
