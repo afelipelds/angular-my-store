@@ -7,12 +7,15 @@ import { Product } from '../models/product.model';
   providedIn: 'root',
 })
 export class ProductsService {
-  urlFakeStoreApi: string =
-    'https://young-sands-07814.herokuapp.com/api/products';
+  apiUrl: string = 'https://young-sands-07814.herokuapp.com/api/products';
 
   constructor(private http: HttpClient) {}
 
   getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.urlFakeStoreApi);
+    return this.http.get<Product[]>(this.apiUrl);
+  }
+
+  getProduct(id: string) {
+    return this.http.get<Product>(`${this.apiUrl}/${id}`);
   }
 }

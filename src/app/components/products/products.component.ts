@@ -12,6 +12,7 @@ export class ProductsComponent {
   totalPrice: number = 0;
   myShoppingCart: Product[] = [];
   products: Product[] = [];
+  showProductDetail = false;
 
   constructor(
     private storeService: StoreService,
@@ -30,5 +31,16 @@ export class ProductsComponent {
     this.storeService.addProduct(product);
     this.totalPrice = this.storeService.getTotalPrice();
     console.log('totalPrice of Cart--> ', this.storeService.getTotalPrice());
+  }
+
+  toggleProductDetail() {
+    this.showProductDetail = !this.showProductDetail;
+  }
+
+  onShowProductDetail(id: string) {
+    console.log('id: ', id);
+    this.productsService
+      .getProduct(id)
+      .subscribe((data) => console.log('data ----------', data));
   }
 }
