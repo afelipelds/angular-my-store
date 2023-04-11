@@ -22,10 +22,10 @@ export class NavComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.shoppingCartTotalPrice = this.storeService.getTotalPrice();
-    console.log(
-      '---- this.shoppingCartTotalPrice --',
-      this.shoppingCartTotalPrice
-    );
+    // console.log(
+    //   '---- this.shoppingCartTotalPrice --',
+    //   this.shoppingCartTotalPrice
+    // );
   }
 
   toggleMenu() {

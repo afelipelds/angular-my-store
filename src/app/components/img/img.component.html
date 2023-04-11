@@ -1,10 +1,4 @@
-<img
-  (error)="imageError()"
-  (load)="imageLoaded()"
-  [src]="image"
-  *ngIf="image; else imgElse"
-  alt="image"
-/>
+<img (error)="imageError()" (load)="imageLoaded()" [src]="image" *ngIf="image; else imgElse" [alt]="alt" />
 <ng-template #imgElse>
-  <img [ngClass]="{ error: imageError() }" [src]="imageDefault" alt="image" />
+  <img [ngClass]="{ error: imageError() }" [src]="imageDefault" alt="Default image" />
 </ng-template>

@@ -1,5 +1,5 @@
-<app-image [image]="product.image"></app-image>
+<app-image [alt]="product.title" [image]="product.images[0]"></app-image>
 <h2>{{ product.price | currency: 'USD $'}}</h2>
-<p>{{ product.title | replaceVowels }}</p>
-<p appHighlight>{{product.description}}</p>
+<p>{{ product.title }}</p>
+<p>{{product.description}}</p>
 <button (click)="onAddToCart()">Agregar</button>

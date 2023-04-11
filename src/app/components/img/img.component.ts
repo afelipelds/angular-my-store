@@ -29,7 +29,7 @@ export class ImgComponent
   @Input() alt = '';
   @Output() loaded = new EventEmitter<string>();
   imageDefault = './assets/images/default.png';
-  // counter = 0;
+  counter = 0;
   // counterFunction: number | undefined;
 
   constructor(private cdRef: ChangeDetectorRef) {
@@ -39,34 +39,20 @@ export class ImgComponent
 
   ngOnChanges(changes: SimpleChanges) {
     // before & during render and constantly is seeing changes on @Inputs
-    // Si es necesario ejecutar acciones por esos cambios en los @Input
-    // acá es el sitio
-    // console.log('ngOnChanges ->> changes on Input:image', this.image);
-    // console.log('ngOnChanges ->> Simplechanges: ', changes);
+    // Si es necesario ejecutar acciones por esos cambios en los @Input acá es el sitio
+    this.alt = changes['alt'].currentValue;
   }
 
   ngOnInit() {
-    // before render
-    // call api, async, fetch - but run only once
-    //
-    /** How it works with an async function */
-    // this.counterFunction = window.setInterval(() => {
-    //   this.counter += 1;
-    //   console.log('ngOnInit ̣--> run setInterval on ´onInit´');
-    // }, 1000);
+    // before render. calls to api, async, fetch - but run only once
   }
 
   ngAfterViewInit() {
-    // After render
-    // handle children
-    // console.log('ngAfterViewInit ->> ', this.image);
+    // After render & handle children
   }
 
   ngOnDestroy() {
-    // delete
-    // console.log('ngOnDestroy ->> delete component');
-    // console.log(this.counterFunction);
-    // window.clearInterval(this.counterFunction);
+    // delete components, kill them
   }
 
   imageError() {
